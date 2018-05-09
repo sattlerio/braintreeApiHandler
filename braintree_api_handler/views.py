@@ -82,5 +82,4 @@ def validate_credentials():
                        message="not possible to authenticate user",
                        transaction_id=transaction_id), 500
 
-
     return "d"
