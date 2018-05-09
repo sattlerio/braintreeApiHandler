@@ -7,7 +7,7 @@ import unittest
 from flask import Flask
 from config import *
 
-from braintree.exceptions.configurations_exceptions import ImproperlyConfigured
+from braintree_api_handler.exceptions.configurations_exceptions import ImproperlyConfigured
 
 ENVS = ['config.DevelopmentConfig', 'config.TestingConfig', 'config.StagingConfig', 'config.ProductionConfig']
 
@@ -17,7 +17,7 @@ def get_env_variable(var_name):
     try:
         return os.environ[var_name]
     except KeyError:
-        error_msg = f"Set the {var_name} environment variable"
+        error_msg = "Set the {} environment variable".format(var_name)
         raise ImproperlyConfigured(error_msg)
 
 
@@ -51,10 +51,10 @@ app.logger.addHandler(handler)
 app.logger.setLevel(log_level)
 
 # import blueprints
-from braintree.views import braintree
+from braintree_api_handler.views import braintree_handler
 
 # register blueprints
-app.register_blueprint(braintree)
+app.register_blueprint(braintree_handler)
 
 
 @app.cli.command()

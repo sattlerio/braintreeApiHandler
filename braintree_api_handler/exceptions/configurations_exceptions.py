@@ -1,4 +1,4 @@
-from braintree.exceptions.base_exceptions import Error
+from braintree_api_handler.exceptions.base_exceptions import Error
 
 
 class ImproperlyConfigured(Error):
