@@ -66,14 +66,14 @@ def validate_credentials():
                            status_code=200,
                            message="successfully validated credentials",
                            token=client_token,
-                           transaction_id=transaction_id)
+                           transaction_id=transaction_id), 200
         except Exception as e:
             app.logger.info(e)
             app.logger.info("{}: error while trying to retrieve token".format(transaction_id))
             return jsonify(status="ERROR",
                            status_code=401,
                            message="not possible to authenticate user",
-                           transaction_id=transaction_id), 401
+                           transaction_id=transaction_id), 400
     except Exception as e:
         app.logger.info(e)
         app.logger.info("{}: error while trying to generate token".format(transaction_id))
@@ -81,5 +81,3 @@ def validate_credentials():
                        status_code=500,
                        message="not possible to authenticate user",
                        transaction_id=transaction_id), 500
-
-    return "d"
